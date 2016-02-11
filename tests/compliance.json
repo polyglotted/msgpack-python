@@ -1,0 +1,86 @@
+{
+  "name": "msgpack compliance test",
+  "version": "1.0.0",
+  "suites": {
+    "INTEGER": {
+      "segments": [
+        {
+          "name": "fixnum min (-32)",
+          "b64": "4A=="
+        },
+        {
+          "name": "fixnum max (127)",
+          "b64": "fw=="
+        },
+        {
+          "name": "byte min (-128)",
+          "b64": "0IA="
+        },
+        {
+          "name": "byte max (255)",
+          "b64": "zP8="
+        },
+        {
+          "name": "short min (-32768)",
+          "b64": "0YAA"
+        },
+        {
+          "name": "short max (65535)",
+          "b64": "zf//"
+        },
+        {
+          "name": "int min (-2147483648)",
+          "b64": "0oAAAAA="
+        },
+        {
+          "name": "int max (4294967295)",
+          "b64": "zv////8="
+        },
+        {
+          "name": "long min (-9223372036854775808)",
+          "b64": "04AAAAAAAAAA"
+        },
+        {
+          "name": "long max (18446744073709547520)",
+          "b64": "z/////////AA"
+        }
+      ]
+    },
+    "NIL": {
+      "segments": [
+        {
+          "name": "nil (None)",
+          "b64": "wA=="
+        }
+      ]
+    },
+    "BOOLEAN": {
+      "segments": [
+        {
+          "name": "bool true (True)",
+          "b64": "ww=="
+        },
+        {
+          "name": "bool false (False)",
+          "b64": "wg=="
+        }
+      ]
+    },
+    "FLOAT": {
+      "segments": [
+        {
+          "name": "float32 min (1.4e-45)",
+          "b64": "ygEAAAA="
+        },
+        {
+          "name": "float32 max (3.40282346639e+38)",
+          "b64": "yv//f38="
+        },
+        {
+          "name": "float64 max (1.79769313486e+308)",
+          "b64": "y////////+9/"
+        }
+      ]
+    }
+  }
+}
