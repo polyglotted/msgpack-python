@@ -30,22 +30,20 @@ def test_compliance():
     for suite in compliance['suites']:
         for segment in compliance['suites'][suite]['segments']:
             global test_segment
-            test_segment = {
-                'base64': segment['b64']
-            }
+            test_segment = dict(b64=segment['b64'])
             yield check_basic_segment, ':'.join((suite, segment['name']))
 
 
 def check_basic_segment(key):
-    read_bytes = test_segment['base64'].decode('base64', 'strict')
+    read_bytes = test_segment['b64'].decode('base64', 'strict')
     read_value = Unpacker(read_bytes).unpack()
-    logging.debug('read %s', read_value)
+    logging.debug('[%s] read %s', key, read_value)
     packer = Packer()
     packer.pack(read_value)
     write_bytes = packer.get_bytes()
     out_b64 = write_bytes.encode('base64', 'strict').replace('\n', '')
 
-    if out_b64 != test_segment['base64']:
+    if out_b64 != test_segment['b64']:
         compare_bytes(convert_bytes(write_bytes), convert_bytes(read_bytes))
 
-    expect(out_b64).to.equal(test_segment['base64'])
+    expect(out_b64).to.equal(test_segment['b64'])
