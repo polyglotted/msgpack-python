@@ -49,14 +49,14 @@ class Packer:
             self.write_byte(Prefix.FLOAT32)
         else:
             assert prefix == Prefix.FLOAT32, 'write_float expects prefix %s but received %s' % (Prefix.FLOAT32, prefix)
-        self.struct_pack('f', value)
+        self.struct_pack('>f', value)
 
     def write_double(self, value, prefix=None):
         if prefix is None:
             self.write_byte(Prefix.FLOAT64)
         else:
             assert prefix == Prefix.FLOAT64, 'write_double expects prefix %s but received %s' % (Prefix.FLOAT64, prefix)
-        self.struct_pack('d', value)
+        self.struct_pack('>d', value)
 
     def write_payload(self, bytes):
         self.buf.write(bytes)

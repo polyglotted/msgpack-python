@@ -44,13 +44,13 @@ class Unpacker:
         if prefix is None:
             prefix = self.read_byte()
         assert prefix == Prefix.FLOAT32, 'read_float expects prefix %s but read %s' % (Prefix.FLOAT32, prefix)
-        return self.struct_unpack('f')[0]
+        return self.struct_unpack('>f')[0]
 
     def read_double(self, prefix=None):
         if prefix is None:
             prefix = self.read_byte()
         assert prefix == Prefix.FLOAT64, 'read_double expects prefix %s but read %s' % (Prefix.FLOAT64, prefix)
-        return self.struct_unpack('d')[0]
+        return self.struct_unpack('>d')[0]
 
     def read_payload(self, length):
         return self.buf.read(length)

@@ -6,42 +6,52 @@
       "segments": [
         {
           "name": "fixnum min (-32)",
+          "method_suffix": "_int",
           "b64": "4A=="
         },
         {
           "name": "fixnum max (127)",
+          "method_suffix": "_int",
           "b64": "fw=="
         },
         {
           "name": "byte min (-128)",
+          "method_suffix": "_int",
           "b64": "0IA="
         },
         {
           "name": "byte max (255)",
+          "method_suffix": "_int",
           "b64": "zP8="
         },
         {
           "name": "short min (-32768)",
+          "method_suffix": "_int",
           "b64": "0YAA"
         },
         {
           "name": "short max (65535)",
+          "method_suffix": "_int",
           "b64": "zf//"
         },
         {
           "name": "int min (-2147483648)",
+          "method_suffix": "_int",
           "b64": "0oAAAAA="
         },
         {
           "name": "int max (4294967295)",
+          "method_suffix": "_int",
           "b64": "zv////8="
         },
         {
           "name": "long min (-9223372036854775808)",
+          "method_suffix": "_int",
           "b64": "04AAAAAAAAAA"
         },
         {
           "name": "long max (18446744073709547520)",
+          "method_suffix": "_int",
           "b64": "z/////////AA"
         }
       ]
@@ -50,6 +60,7 @@
       "segments": [
         {
           "name": "nil (None)",
+          "method_suffix": "_nil",
           "b64": "wA=="
         }
       ]
@@ -58,10 +69,12 @@
       "segments": [
         {
           "name": "bool true (True)",
+          "method_suffix": "_boolean",
           "b64": "ww=="
         },
         {
           "name": "bool false (False)",
+          "method_suffix": "_boolean",
           "b64": "wg=="
         }
       ]
@@ -70,14 +83,32 @@
       "segments": [
         {
           "name": "float32 min (1.4e-45)",
+          "method_suffix": "_float",
           "b64": "ygEAAAA="
         },
         {
           "name": "float32 max (3.40282346639e+38)",
+          "method_suffix": "_float",
           "b64": "yv//f38="
         },
         {
+          "name": "float32 random (95.23)",
+          "method_suffix": "_float",
+          "b64": "ysN1vkI="
+        },
+        {
+          "name": "float64 random (95.23)",
+          "method_suffix": "_double",
+          "b64": "yx+F61G4zldA"
+        },
+        {
+          "name": "float64 min (4.94065645841e-324)",
+          "method_suffix": "_double",
+          "b64": "ywEAAAAAAAAA"
+        },
+        {
           "name": "float64 max (1.79769313486e+308)",
+          "method_suffix": "_double",
           "b64": "y////////+9/"
         }
       ]

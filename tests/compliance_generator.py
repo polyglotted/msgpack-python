@@ -9,32 +9,34 @@ def generate():
     compliance = OrderedDict([('name', 'msgpack compliance test'), ('version', '1.0.0'), ('suites', OrderedDict())])
 
     compliance['suites']['INTEGER'] = OrderedDict(segments=[
-        gen_segment('fixnum min', 'pack_int', -0x20),
-        gen_segment('fixnum max', 'pack_int', 0x7F),
-        gen_segment('byte min', 'pack_int', -0x80),
-        gen_segment('byte max', 'pack_int', 0xFF),
-        gen_segment('short min', 'pack_int', -0x8000),
-        gen_segment('short max', 'pack_int', 0xFFFF),
-        gen_segment('int min', 'pack_int', -0x80000000),
-        gen_segment('int max', 'pack_int', 0xFFFFFFFF),
-        gen_segment('long min', 'pack_int', -0x8000000000000000),
-        gen_segment('long max', 'pack_int', 0xfffffffffffff000)
+        gen_segment('fixnum min', '_int', -0x20),
+        gen_segment('fixnum max', '_int', 0x7F),
+        gen_segment('byte min', '_int', -0x80),
+        gen_segment('byte max', '_int', 0xFF),
+        gen_segment('short min', '_int', -0x8000),
+        gen_segment('short max', '_int', 0xFFFF),
+        gen_segment('int min', '_int', -0x80000000),
+        gen_segment('int max', '_int', 0xFFFFFFFF),
+        gen_segment('long min', '_int', -0x8000000000000000),
+        gen_segment('long max', '_int', 0xfffffffffffff000)
     ])
 
     compliance['suites']['NIL'] = OrderedDict(segments=[
-        gen_segment('nil', 'pack_nil', None)
+        gen_segment('nil', '_nil', None)
     ])
 
     compliance['suites']['BOOLEAN'] = OrderedDict(segments=[
-        gen_segment('bool true', 'pack_boolean', True),
-        gen_segment('bool false', 'pack_boolean', False)
+        gen_segment('bool true', '_boolean', True),
+        gen_segment('bool false', '_boolean', False)
     ])
 
     compliance['suites']['FLOAT'] = OrderedDict(segments=[
-        gen_segment('float32 min', 'pack_float', 1.4e-45),
-        gen_segment('float32 max', 'pack_float', 3.4028234663852886e+38),
-        # gen_segment('float64 min', 'pack_double', 4.9e-324),
-        gen_segment('float64 max', 'pack_double', 1.7976931348623157e+308)
+        gen_segment('float32 min', '_float', 1.4e-45),
+        gen_segment('float32 max', '_float', 3.4028234663852886e+38),
+        gen_segment('float32 random', '_float', 95.23),
+        gen_segment('float64 random', '_double', 95.23),
+        gen_segment('float64 min', '_double', 4.9e-324),
+        gen_segment('float64 max', '_double', 1.7976931348623157e+308)
     ])
 
     out = json.dumps(compliance, indent=2, separators=(',', ': '))
@@ -43,16 +45,17 @@ def generate():
         f.write(out)
 
 
-def gen_segment(name, method, arg=None, append_arg_to_name=True):
+def gen_segment(name, method_suffix, arg=None, append_arg_to_name=True):
     packer = Packer()
     if arg is None:
-        getattr(packer, method)()
+        getattr(packer, 'pack' + method_suffix)()
     else:
-        getattr(packer, method)(arg)
+        getattr(packer, 'pack' + method_suffix)(arg)
 
     if append_arg_to_name:
         name = name + ' (' + str(arg) + ')'
-    return OrderedDict([('name', name), ('b64', packer.get_bytes().encode('base64', 'strict').replace('\n', ''))])
+    return OrderedDict(
+        [('name', name), ('method_suffix', method_suffix), ('b64', packer.get_bytes().encode('base64', 'strict').replace('\n', ''))])
 
 
 if __name__ == '__main__':
