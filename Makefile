@@ -4,4 +4,4 @@ install:
 	python setup.py install
 
 test:
-	nosetests -v --with-coverage --cover-package=msgpack --cover-html
+	python setup.py nosetests -v --with-coverage --cover-package=msgpack --cover-html
