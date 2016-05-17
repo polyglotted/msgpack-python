@@ -12,7 +12,7 @@ setup(
     keywords=['msgpack'],
     classifiers=[],
     setup_requires=[
-        'pytest-runner>=2.0,<3dev'
+        'pytest-runner==2.7.1'
     ],
     tests_require=[
         'coverage==4.1b2',
