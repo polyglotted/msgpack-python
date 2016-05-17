@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import json
 import os
 from collections import OrderedDict
@@ -37,6 +39,11 @@ def generate():
         gen_segment('float64 random', '_double', 95.23),
         gen_segment('float64 min', '_double', 4.9e-324),
         gen_segment('float64 max', '_double', 1.7976931348623157e+308)
+    ])
+
+    compliance['suites']['STRING'] = OrderedDict(segments=[
+        gen_segment('string utf-8', '_string', 'foo-bar-baz'),
+        gen_segment('string iso-8859-1', '_string', 'Réseau de Transport d\'Électricité')
     ])
 
     out = json.dumps(compliance, indent=2, separators=(',', ': '))

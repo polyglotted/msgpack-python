@@ -111,7 +111,8 @@ class Packer:
             raise ValueError('unhandled value %s' % value)
 
     def pack_string(self, value):
-        ba = value.encode(encoding='UTF-8')
+        ba = repr(value).encode(encoding='utf-8')
+        # ba = value.encode(encoding='UTF-8')
         self.pack_raw_string_header(len(ba))
         self.write_payload(ba)
 

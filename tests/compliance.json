@@ -84,32 +84,46 @@
         {
           "name": "float32 min (1.4e-45)",
           "method_suffix": "_float",
-          "b64": "ygEAAAA="
+          "b64": "ygAAAAE="
         },
         {
           "name": "float32 max (3.40282346639e+38)",
           "method_suffix": "_float",
-          "b64": "yv//f38="
+          "b64": "yn9///8="
         },
         {
           "name": "float32 random (95.23)",
           "method_suffix": "_float",
-          "b64": "ysN1vkI="
+          "b64": "ykK+dcM="
         },
         {
           "name": "float64 random (95.23)",
           "method_suffix": "_double",
-          "b64": "yx+F61G4zldA"
+          "b64": "y0BXzrhR64Uf"
         },
         {
           "name": "float64 min (4.94065645841e-324)",
           "method_suffix": "_double",
-          "b64": "ywEAAAAAAAAA"
+          "b64": "ywAAAAAAAAAB"
         },
         {
           "name": "float64 max (1.79769313486e+308)",
           "method_suffix": "_double",
-          "b64": "y////////+9/"
+          "b64": "y3/v////////"
+        }
+      ]
+    },
+    "STRING": {
+      "segments": [
+        {
+          "name": "string utf-8 (foo-bar-baz)",
+          "method_suffix": "_string",
+          "b64": "rSdmb28tYmFyLWJheic="
+        },
+        {
+          "name": "string iso-8859-1 (R\u00e9seau de Transport d'\u00c9lectricit\u00e9)",
+          "method_suffix": "_string",
+          "b64": "2TgiUlx4YzNceGE5c2VhdSBkZSBUcmFuc3BvcnQgZCdceGMzXHg4OWxlY3RyaWNpdFx4YzNceGE5Ig=="
         }
       ]
     }

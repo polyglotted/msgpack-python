@@ -1,7 +1,10 @@
 .DEFAULT_GOAL := test
 
+testdeps:
+	pip install -r test-requirements.txt
+
 install:
 	python setup.py install
 
 test:
-	python setup.py nosetests -v --with-coverage --cover-package=msgpack --cover-html
+	py.test tests --html=test-report.html

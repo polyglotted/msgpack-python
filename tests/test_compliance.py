@@ -2,9 +2,11 @@ import json
 import logging
 import os
 
-from sure import expect
+import pytest
 
 from msgpack import Packer, Unpacker
+
+test_segment = None
 
 with open(os.path.join(os.path.dirname(__file__)) + "/compliance.json", 'r') as f:
     compliance = json.loads(f.read())
@@ -26,15 +28,18 @@ def convert_bytes(in_bytes):
     return out_bytes
 
 
-def test_compliance():
+def gen_compliance_suite():
+    segments = []
     for suite in compliance['suites']:
         for segment in compliance['suites'][suite]['segments']:
             global test_segment
             test_segment = dict(b64=segment['b64'], suffix=segment['method_suffix'])
-            yield check_basic_segment, ':'.join((suite, segment['name']))
+            segments.append(':'.join((suite, segment['name'])))
+    return segments
 
 
-def check_basic_segment(key):
+@pytest.mark.parametrize('key', gen_compliance_suite())
+def test_basic_segment(key):
     method_suffix = test_segment['suffix']
     read_bytes = test_segment['b64'].decode('base64', 'strict')
     unpacker = Unpacker(read_bytes)
@@ -52,4 +57,4 @@ def check_basic_segment(key):
     if out_b64 != test_segment['b64']:
         compare_bytes(convert_bytes(write_bytes), convert_bytes(read_bytes))
 
-    expect(out_b64).to.equal(test_segment['b64'])
+    assert out_b64 == test_segment['b64']
