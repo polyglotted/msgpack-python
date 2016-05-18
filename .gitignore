@@ -8,3 +8,4 @@ build
 cover
 .coverage
 test-report.html
+htmlcov/
